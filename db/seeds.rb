@@ -5,15 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-5.times do |n|
-  subject = Subject.create!(name: Faker::Name.name)
-  10.times do |m|
-    question = Question.create!(content: Faker::Lorem.sentence(2), subject_id: n+1)
-    4.times do |k|
-      option = Option.create!(content: Faker::Lorem.sentence(2), correct: 0, question_id: m+1)
+Settings.subjects.each do |name|
+  Subject.create! name: name
+end
+
+subjects = Subject.all
+subjects.each do |subject|
+  30.times do
+    content = Faker::Lorem.sentence(2)
+    question = subject.questions.build content: content
+    4.times do |n|
+      content = Faker::Lorem.sentence(1)
+      correct = n == 1 ? true : false
+      question.options.build content: content, correct: correct
     end
+    question.save!
   end
-end 
+end
+
 User.create!(name:  "User admin",
              email: "admin@gmail.com",
              password:              "12345678",

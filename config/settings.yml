@@ -1,0 +1,5 @@
+num_questions_random: 20
+subjects: 
+  - "MySQL Test"
+  - "Ruby On Rails Test"
+  - "Git Test"
