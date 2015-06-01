@@ -1,0 +1,2 @@
+default_num_questions_random: 20
+default_subjects: ["MySQL Test", "Ruby On Rails Test", "Git Test"]
