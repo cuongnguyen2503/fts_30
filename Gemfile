@@ -13,6 +13,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem "rails_config"
 
 group :development do
   gem 'better_errors'

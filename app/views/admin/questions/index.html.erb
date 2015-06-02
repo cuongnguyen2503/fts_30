@@ -1,13 +1,15 @@
-<h3>All questions</h3>
+<h3>All questions (<%= @questions.count %>)</h3>
+
+<%= will_paginate @questions %>
 
 <% @questions.each do |question| %>
   <div class="question" id="question-<%= question.id %>">
     <h4>
-      <%= question.content %>
+      <%= question.content %>(ID - <%= question.id %>)(Subject_ID - <%= question.subject_id %>)
       <span><%= link_to 'Remove', admin_question_path(question), method: :delete, data: {confirm: "Are you sure?"}, remote: true %></span>
     </h4>
     <% question.options.each do |option| %>
-      <li><%= option.content %></li>
+      <li><%= option.content %>(Question_ID: <%= option.question_id %>)</li>
     <% end %>
   </div>
 <% end %>
