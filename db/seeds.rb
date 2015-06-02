@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Settings.default_subjects.each do |name|
+Settings.subjects.each do |name|
   Subject.create! name: name
 end
 

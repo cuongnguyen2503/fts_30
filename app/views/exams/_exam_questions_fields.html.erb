@@ -1,0 +1,5 @@
+
+<% f.object.question.options.each do |option| %>
+  <span><%= f.radio_button :option_id, option.id %></span>
+  <span><%= option.content %></span>
+<% end %>

@@ -25,6 +25,7 @@ en:
   add_option: "Add option"
   failed_flash: "Failed!"
   start_exam: "Create new exam"
+  submit_answers: "Submit"
   u_delete: "User deleted."
   u_update: "User updated."
   u_error_update: "Unable to update user."

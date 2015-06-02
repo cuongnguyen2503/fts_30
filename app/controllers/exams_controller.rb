@@ -22,6 +22,21 @@ class ExamsController < ApplicationController
     end
   end
 
+  def edit
+    @exam = Exam.find params[:id]
+    @exam.results.build
+  end
+
+  def update
+    @exam = Exam.find params[:id]
+    if @exam.update_attributes exam_params
+      flash[:success] = t :success_flash
+      redirect_to exam_path(@exam)
+    else  
+      render 'edit'
+    end
+  end
+
   def show    
     @exam = Exam.find params[:id]
     @questions = @exam.questions
@@ -30,7 +45,8 @@ class ExamsController < ApplicationController
   private
 
   def exam_params
-    params.require(:exam).permit :name, :user_id, :subject_id
+    params.require(:exam).permit :name, :user_id, :subject_id,
+      results_attributes: [:id, :question_id, :option_id, :exam_id]
   end    
 
   def subjects_select_tag

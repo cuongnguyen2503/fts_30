@@ -1,0 +1,21 @@
+<% provide(:title, 'Testing...') %>
+
+<div class="clear"></div>
+
+<h3><%= @exam.name %></h3>
+
+<% @exam.questions.each do |question| %>
+  <li><%= question.content %></li>
+<% end %>
+
+<div class="row">
+  <%= form_for @exam do |exam_form| %>
+    <%= render 'shared/error_messages', object: exam_form.object %>
+
+    <%= exam_form.fields_for :results do |builder| %>
+      <%= render "exam_questions_fields", f: builder %>  
+    <% end %>
+    
+    <%= exam_form.submit t :submit_answers, class: "btn btn-primary" %>  
+  <% end %>
+</div>
