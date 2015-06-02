@@ -22,18 +22,36 @@ class ExamsController < ApplicationController
     end
   end
 
+  def edit
+    @exam = Exam.find params[:id]
+    if @exam.done?
+      flash[:success] = t :done_flash
+      redirect_to @exam
+    end
+  end
+
+  def update
+    @exam = Exam.find params[:id]
+    if @exam.update_attributes exam_params
+      flash[:success] = t :success_flash
+      redirect_to @exam
+    else
+      flash[:alert] = t :failed_flash
+      render 'edit'
+    end
+  end
+
   def show    
     @exam = Exam.find params[:id]
-    @questions = @exam.questions
   end
  
   private
-
   def exam_params
-    params.require(:exam).permit :name, :user_id, :subject_id
-  end    
+    params.require(:exam).permit :name, :user_id, :subject_id, :done,
+      results_attributes: [:id, :option_id]
+  end
 
   def subjects_select_tag
     @subjects = Subject.all.map{|subject| [subject.name, subject.id]}
-  end    
+  end
 end

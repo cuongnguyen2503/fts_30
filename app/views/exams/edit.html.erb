@@ -1,0 +1,23 @@
+<% provide :title, 'Testing...' %>
+
+<div class="row">
+  <%= form_for @exam do |f| %>
+    <%= f.hidden_field :done, value: 1 %>
+
+    <%= f.fields_for :results do |builder| %>
+      <%= builder.object.question_content %>
+
+      <% question = builder.object.question %>
+      <ul class="answer-list">
+        <% question.options.each do |option| %>
+          <li>
+            <%= builder.radio_button :option_id, option.id, checked: false, class: "radio-btn" %> 
+            <%= option.content %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>

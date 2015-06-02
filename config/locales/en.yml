@@ -22,6 +22,7 @@
 en:
   hello: "Hello world"
   success_flash: "Successfully!"
+  done_flash: "You have done the exam!"
   add_option: "Add option"
   failed_flash: "Failed!"
   start_exam: "Create new exam"
