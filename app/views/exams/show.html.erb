@@ -1,3 +1,34 @@
-<% @questions.each do |question| %>
-  <li><%= question.content %><%= question.id %> - Subject - ID<%= question.subject.id %></li>
-<% end %>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr> 
+      <td> Question </td>
+      <td> Correct answer </td>
+      <td> your answer </td>
+      <td> Result </td>
+    </tr>
+    <% @exam.results.each do |result| %>
+      <tr>
+        <td><%= result.question_content %></td>
+        <td>
+          <% result.question.options.each do |option| %>
+            <% if option.correct? %>
+              <%= option.content %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if result.option_id? %>
+            <%= result.option_content %>
+          <% end %>
+        </td>
+        <td>
+          <% if result.option_id? %>
+            <%= result.option.correct? ? "True" : "Failed" %>
+          <% else %>
+            Not answered
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

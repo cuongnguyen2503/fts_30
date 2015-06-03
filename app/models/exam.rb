@@ -1,16 +1,15 @@
 class Exam < ActiveRecord::Base
-  has_many :questions, dependent: :destroy
   has_many :results, dependent: :destroy
   belongs_to :user
   belongs_to :subject
 
+  accepts_nested_attributes_for :results
+
   after_create :random_questions
 
-  private    
-
+  private
   def random_questions
     questions = self.subject.questions.order("RAND()").first Settings.num_questions_random
-    questions.each {|question| question.update_attributes exam_id: id}
+    questions.each {|question| results.create question: question}
   end
-
 end
