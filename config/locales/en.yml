@@ -29,3 +29,6 @@ en:
   u_delete: "User deleted."
   u_update: "User updated."
   u_error_update: "Unable to update user."
+  exam_mailer:
+    exam_notification:
+      subject: "Please finish your exam."
