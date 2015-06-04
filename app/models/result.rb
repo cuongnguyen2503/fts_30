@@ -4,5 +4,6 @@ class Result < ActiveRecord::Base
   belongs_to :option
 
   delegate :content, to: :question, prefix: true
+  delegate :answer, to: :question, prefix: true
   delegate :content, to: :option, prefix: true
 end

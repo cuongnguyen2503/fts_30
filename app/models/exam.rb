@@ -9,7 +9,8 @@ class Exam < ActiveRecord::Base
 
   private
   def random_questions
-    questions = self.subject.questions.order("RAND()").first Settings.num_questions_random
+    questions = self.subject.questions.where(level: self.level)
+      .order("RAND()").first Settings.num_questions_random
     questions.each {|question| results.create question: question}
   end
 end

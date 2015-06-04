@@ -7,6 +7,9 @@
 
     <%= select_tag :subject_id, options_for_select(@subjects, selected: params[:subject_id]), class: "form-control" %>   
 
+    <h3> Choose level </h3>
+	<%= f.select :level, ['0', '1'] %>
+
     <h3> Exam's name </h3>
     <%= f.text_field :name, class: 'form-control' %>
   

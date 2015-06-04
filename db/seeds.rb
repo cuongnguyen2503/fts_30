@@ -12,13 +12,24 @@ end
 subjects = Subject.all
 subjects.each do |subject|
   30.times do
-    content = Faker::Lorem.sentence(2)
-    question = subject.questions.build content: content
+    content = Faker::Lorem.sentence(4)
+    num = rand(5)
+    level = num % 2 == 0 ? 0 : 1
+    question = subject.questions.build content: content, level: level
     4.times do |n|
       content = Faker::Lorem.sentence(1)
       correct = n == 1 ? true : false
       question.options.build content: content, correct: correct
     end
+    question.save!
+  end
+
+  30.times do
+    content = Faker::Lorem.sentence(4)
+    answer = Faker::Lorem.sentence(2)
+    num = rand(5)
+    level = num % 2 == 0 ? 0 : 1
+    question = subject.questions.build content: content, answer: answer, level: level    
     question.save!
   end
 end
