@@ -7,6 +7,8 @@ class Exam < ActiveRecord::Base
 
   after_create :random_questions
 
+  scope :not_done, ->{where done: false}
+
   private
   def random_questions
     questions = self.subject.questions.order("RAND()").first Settings.num_questions_random
