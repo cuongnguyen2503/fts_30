@@ -10,15 +10,19 @@
       <tr>
         <td><%= result.question_content %></td>
         <td>
-          <% result.question.options.each do |option| %>
-            <% if option.correct? %>
-              <%= option.content %>
+          <% if result.question.options.any? %>
+            <% result.question.options.each do |option| %>
+              <%= option.content if option.correct? %>
             <% end %>
+          <% else %>
+            <%= result.question_answer %>
           <% end %>
         </td>
         <td>
           <% if result.option_id? %>
             <%= result.option_content %>
+          <% else %>
+            <%= result.answer_content %>
           <% end %>
         </td>
         <td>
