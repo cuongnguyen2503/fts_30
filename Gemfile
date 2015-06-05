@@ -15,6 +15,7 @@ gem "will_paginate"
 gem "bootstrap-will_paginate"
 gem "rails_config"
 gem "whenever", require: false
+gem 'omniauth-facebook'
 
 group :development do
   gem "better_errors"
@@ -31,11 +32,6 @@ group :development, :test do
   gem "byebug"
   gem "web-console", "~> 2.0"
   gem "spring"
-end
-
-group :production do
-  gem "pg"
-  gem "rails_12factor"
 end
 
 group :test do

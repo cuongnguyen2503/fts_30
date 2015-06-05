@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603014555) do
+ActiveRecord::Schema.define(version: 20150605092427) do
+
+  create_table "answers", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "option_id",  limit: 4
+    t.integer  "result_id",  limit: 4
+  end
 
   create_table "exams", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -21,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150603014555) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "done",       limit: 1,   default: false
+    t.integer  "level",      limit: 4
   end
 
   add_index "exams", ["subject_id"], name: "index_exams_on_subject_id", using: :btree
@@ -37,11 +45,14 @@ ActiveRecord::Schema.define(version: 20150603014555) do
   add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.string   "content",    limit: 255
-    t.integer  "exam_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "subject_id", limit: 4
+    t.string   "content",        limit: 255
+    t.integer  "exam_id",        limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "subject_id",     limit: 4
+    t.text     "answer",         limit: 65535
+    t.integer  "level",          limit: 4
+    t.integer  "question_types", limit: 4
   end
 
   add_index "questions", ["exam_id"], name: "index_questions_on_exam_id", using: :btree
@@ -50,8 +61,9 @@ ActiveRecord::Schema.define(version: 20150603014555) do
     t.integer  "question_id", limit: 4
     t.integer  "exam_id",     limit: 4
     t.integer  "option_id",   limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "answer",      limit: 65535
   end
 
   add_index "results", ["exam_id"], name: "index_results_on_exam_id", using: :btree
@@ -79,6 +91,9 @@ ActiveRecord::Schema.define(version: 20150603014555) do
     t.datetime "updated_at"
     t.string   "name",                   limit: 255
     t.integer  "access_level",           limit: 4,   default: 0
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "image",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
