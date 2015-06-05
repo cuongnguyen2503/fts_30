@@ -8,6 +8,7 @@ class Exam < ActiveRecord::Base
   after_create :random_questions
 
   scope :not_done, ->{where done: false}
+  scope :expired, ->{not_done.where("created_at <= ?", Time.now - 24.hours)}
 
   private
   def random_questions
