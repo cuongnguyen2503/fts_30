@@ -3,3 +3,6 @@ subjects:
   - "MySQL Test"
   - "Ruby On Rails Test"
   - "Git Test"
+levels:
+  normal: 0
+  advanced: 1

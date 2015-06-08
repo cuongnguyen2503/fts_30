@@ -5,8 +5,12 @@
   <%= form_for @exam do |f| %>
     <h3> Choose subject: </h3>
 
-    <%= select_tag :subject_id, options_for_select(@subjects, selected: params[:subject_id]), class: "form-control" %>   
+    <%= select_tag :subject_id, options_for_select(@subjects, selected: params[:subject_id]), 
+    class: "form-control" %>   
 
+    <h3> Choose level </h3>
+    <%= f.select :level, Settings.levels.map {|key, value| [key, value]} %>
+    
     <h3> Exam's name </h3>
     <%= f.text_field :name, class: 'form-control' %>
   
