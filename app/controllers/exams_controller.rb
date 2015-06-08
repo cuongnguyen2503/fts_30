@@ -47,8 +47,8 @@ class ExamsController < ApplicationController
  
   private
   def exam_params
-    params.require(:exam).permit :name, :user_id, :subject_id, :done,
-      results_attributes: [:id, :option_id]
+    params.require(:exam).permit :name, :user_id, :subject_id, :done, :level,
+      results_attributes: [:id, :answer_content, option_ids: []]
   end
 
   def subjects_select_tag

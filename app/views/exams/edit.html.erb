@@ -5,17 +5,24 @@
     <%= f.hidden_field :done, value: 1 %>
 
     <%= f.fields_for :results do |builder| %>
+    
       <%= builder.object.question_content %>
+      <% question = builder.object.question %> 
 
-      <% question = builder.object.question %>
-      <ul class="answer-list">
-        <% question.options.each do |option| %>
-          <li>
-            <%= builder.radio_button :option_id, option.id, checked: false, class: "radio-btn" %> 
-            <%= option.content %>
-          </li>
-        <% end %>
-      </ul>
+      <% if question.options.any? && question.multiple_choices? %>
+        <p> Choose at least one answer </p>
+        <ul class="answer-list">
+          <%= builder.collection_check_boxes(:option_ids, question.options, :id, :content) %>
+        </ul>
+      <% elsif question.options.any? && question.single_choice? %>
+        <p> Choose only one answer </p>
+        <ul class="answer-list">
+          <%= builder.collection_check_boxes(:option_ids, question.options, :id, :content) %>
+        </ul>        
+      <% else %>
+        <%= builder.label 'your answer here' %>
+        <%= builder.text_area :answer_content, class: 'form-control' %>
+      <% end %>
     <% end %>
 
     <%= f.submit "Submit", class: "btn btn-primary" %>
