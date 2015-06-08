@@ -15,6 +15,7 @@ gem "will_paginate"
 gem "bootstrap-will_paginate"
 gem "rails_config"
 gem "whenever", require: false
+gem "sidekiq"
 
 group :development do
   gem "better_errors"

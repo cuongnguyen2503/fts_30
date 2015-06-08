@@ -32,3 +32,5 @@ en:
   exam_mailer:
     exam_notification:
       subject: "Please finish your exam."
+    done_exam_notification:
+      subject: "New exam done." 

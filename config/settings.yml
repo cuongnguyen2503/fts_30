@@ -6,3 +6,6 @@ subjects:
 levels:
   normal: 0
   advanced: 1
+user_levels:
+  - "admin"
+  - "normal"
