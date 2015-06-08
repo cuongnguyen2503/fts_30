@@ -1,0 +1,3 @@
+Framgia Testing System
+
+Please check new done exam at <%= edit_exam_url(@exam) %>. 

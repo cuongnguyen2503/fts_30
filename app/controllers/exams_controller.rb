@@ -33,6 +33,7 @@ class ExamsController < ApplicationController
   def update
     @exam = Exam.find params[:id]
     if @exam.update_attributes exam_params
+      EmailWorker.perform_async @exam.id, current_user.id
       flash[:success] = t :success_flash
       redirect_to @exam
     else
