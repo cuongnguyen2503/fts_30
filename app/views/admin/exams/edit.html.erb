@@ -1,0 +1,35 @@
+<% provide :title, "Check result" %>
+
+<div class="row">
+  <% unless @exam.done %>
+    <h2><%= t :undone_exam_alert %></h2>
+  <% else %>
+    <% if @exam.checked %>
+      <h2><%= t :checked_exam_alert %></h2>
+    <% else %>
+      <div class="table-responsive">
+        <%= form_for [:admin, @exam] do |f| %>
+          <%= f.hidden_field :checked, value: 1 %>
+          <table class="table table-bordered">
+            <tr>
+              <td>Question</td>
+              <td>Answer</td>
+              <td>Correct Answer</td>
+              <td>Result</td>
+            </tr>
+            <%= f.fields_for :results do |builder| %>
+              <% result = builder.object %>
+              <tr>
+                <%= render 'show_question_data', result: result %>
+                <td>
+                  <%= builder.select :right, Settings.results.to_a %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

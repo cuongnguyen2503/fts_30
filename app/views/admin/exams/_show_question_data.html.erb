@@ -1,0 +1,19 @@
+<td><%= result.question.content %></td>
+<% if result.question.single_choice? %>
+  <td><%= result.options.first.content if result.options.any? %></td>
+  <td><%= result.right_answers.first.content %></td>
+<% elsif result.question.multiple_choices? %>
+  <td>
+    <% result.options.each do |answer| %>
+      <p>- <%= answer.content %></p>
+    <% end %>
+  </td>
+  <td>
+    <% result.right_answers.each do |answer| %>
+      <p>- <%= answer.content %></p>
+    <% end %>
+  </td>
+<% else %>
+  <td><%= result.answer_content if result.answer_content.present? %></td>
+  <td><%= result.question.answer %></td>
+<% end %>
