@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608061739) do
+ActiveRecord::Schema.define(version: 20150609034710) do
 
   create_table "answers", force: :cascade do |t|
     t.datetime "created_at",           null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150608061739) do
     t.datetime "updated_at",                             null: false
     t.boolean  "done",       limit: 1,   default: false
     t.integer  "level",      limit: 4
+    t.datetime "finished"
   end
 
   add_index "exams", ["subject_id"], name: "index_exams_on_subject_id", using: :btree
