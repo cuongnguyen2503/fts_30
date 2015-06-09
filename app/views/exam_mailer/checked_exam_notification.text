@@ -1,0 +1,4 @@
+Framgia Testing System
+
+Hi <%= @user.name %>,
+Your exam has been checked. View it at <%= exam_url @exam %>
