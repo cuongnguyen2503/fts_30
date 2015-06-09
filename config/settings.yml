@@ -13,3 +13,7 @@ types:
   - single_choice
   - multiple_choices
   - text
+results:
+  right: 1
+  wrong: 0
+  

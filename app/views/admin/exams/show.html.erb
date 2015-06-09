@@ -1,12 +1,24 @@
-<h3> Exam's name </h3>
-<%= @exam.name %>
-<h3> Questions of exam </h3>
-<% @questions.each do |question| %>
-  <li>
-    <%= question.content %>
-    <h4> Options </h4>
-    <% question.options.each do |option| %>
-      <ol><%= option.content %></ol>
-    <% end %>
-  </li>
-<% end %>
+<% provide :title, "Checked Result" %>
+
+<div class="row">
+  <% if @exam.checked %>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tr>
+          <td>Question</td>
+          <td>Answer</td>
+          <td>Correct Answer</td>
+          <td>Result</td>
+        </tr>
+        <% @exam.results.each do |result| %>
+          <tr>
+            <%= render 'show_question_data', result: result %>
+            <td><%= result.right %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% else %>
+    <h2><%= t :unchecked_exam_alert %></h2>
+  <% end %>
+</div>
