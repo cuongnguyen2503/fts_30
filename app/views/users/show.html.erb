@@ -7,3 +7,24 @@
     </section>
   </aside>
 </div>
+<div class="row">
+  <div class="history">
+    <h3> All exams user have done and score </h3>
+    <table class="table table-bordered">
+      <tr>
+        <td> Exam </td>
+        <td> Score </td>
+      </tr>
+      <% @user.exams.each do |exam| %>
+        <tr>
+          <td>
+            <%= exam.name %>
+          </td>
+          <td>
+            <%= Exam.score_of exam.id %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
