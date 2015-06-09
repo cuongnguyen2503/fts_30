@@ -36,4 +36,6 @@ en:
     exam_notification:
       subject: "Please finish your exam."
     done_exam_notification:
-      subject: "New exam done." 
+      subject: "New exam done."
+    checked_exam_notification:
+      subject: "Your exam has been checked."
