@@ -9,12 +9,12 @@
       <%= builder.object.question_content %>
       <% question = builder.object.question %> 
 
-      <% if question.options.any? && question.multiple_choices? %>
+      <% if question.options.any? && question.is_multiple_choices? %>
         <p> Choose at least one answer </p>
         <ul class="answer-list">
           <%= builder.collection_check_boxes(:option_ids, question.options, :id, :content) %>
         </ul>
-      <% elsif question.options.any? && question.single_choice? %>
+      <% elsif question.options.any? && question.is_single_choice? %>
         <p> Choose only one answer </p>
         <ul class="answer-list">
           <%= builder.collection_check_boxes(:option_ids, question.options, :id, :content) %>

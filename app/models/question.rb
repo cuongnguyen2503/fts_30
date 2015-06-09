@@ -8,6 +8,9 @@ class Question < ActiveRecord::Base
   enum types: [:single_choice, :multiple_choices, :text]
 
   accepts_nested_attributes_for :options, reject_if: ->(a){a[:content].blank?}, 
-  	allow_destroy: true
+    allow_destroy: true
 
+  Settings.types.each do |type|
+    define_method("is_#{type}?"){types == type}
+  end
 end

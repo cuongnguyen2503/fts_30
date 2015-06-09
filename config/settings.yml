@@ -9,3 +9,7 @@ levels:
 user_levels:
   - "admin"
   - "normal"
+types:
+  - single_choice
+  - multiple_choices
+  - text
