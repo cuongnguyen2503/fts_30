@@ -1,8 +1,17 @@
 <% provide :title, 'Testing...' %>
 
+<div class="clock">
+  <span id="hour">00</span>
+  <span>:</span>
+  <span id="minute">00</span>
+  <span>:</span>
+  <span id="second">00</span>
+</div>
+
 <div class="row">
   <%= form_for @exam do |f| %>
     <%= f.hidden_field :done, value: 1 %>
+    <%= f.hidden_field :finished, value: Time.now %>
 
     <%= f.fields_for :results do |builder| %>
     
@@ -25,6 +34,6 @@
       <% end %>
     <% end %>
 
-    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= f.submit "Submit", class: "btn btn-primary submit-exam" %>
   <% end %>
 </div>
