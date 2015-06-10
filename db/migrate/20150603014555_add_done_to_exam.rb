@@ -1,5 +1,5 @@
 class AddDoneToExam < ActiveRecord::Migration
   def change
-    add_column :exams, :done, :boolean, default: 0
+    add_column :exams, :done, :boolean, default: false
   end
 end

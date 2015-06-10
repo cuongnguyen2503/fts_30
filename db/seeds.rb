@@ -52,7 +52,7 @@ subjects.each do |subject|
 end
 
 User.create!(name:  "User admin",
-             email: "admin@gmail.com",
+             email: "kendypham69@gmail.com",
              password:              "12345678",
              password_confirmation: "12345678",
              access_level: 1)
