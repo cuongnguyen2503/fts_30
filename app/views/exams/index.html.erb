@@ -1,7 +1,9 @@
 <h3> All your exams </h3>
 
+<% i = 1 %>
 <% @exams.each do |exam| %>
-  <li><%= link_to exam.name, edit_exam_path(exam) %></li>
+  <li><%= link_to exam.subject.name + " #{i}", edit_exam_path(exam) %></li>
+  <% i = i+1 %>
 <% end %>
 
 <h3><%= link_to "New exam", new_exam_path %></h3>

@@ -13,7 +13,7 @@ class Question < ActiveRecord::Base
   scope :right_answers_of, ->(question_id){where(id: question_id).first
                                            .options.where(correct: true)}
   scope :random_questions, ->(exam_level){where(level: exam_level)
-    .order("RAND()").first Settings.num_questions_random
+    .order("RANDOM()").first Settings.num_questions_random
   }
 
   Settings.types.each do |type|

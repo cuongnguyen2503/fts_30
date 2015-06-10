@@ -1,0 +1,5 @@
+<% i = 1 %>
+<% @exams.each do |exam| %>
+  <li><%= exam.subject.name + " #{i}" %> | <span><%= link_to "Chấm bài", edit_admin_exam_path(exam) %></span></li>
+  <% i = i + 1 %>
+<% end %>

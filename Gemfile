@@ -16,6 +16,7 @@ gem "bootstrap-will_paginate"
 gem "rails_config"
 gem "whenever", require: false
 gem "sidekiq"
+gem "faker"
 
 group :development do
   gem "better_errors"
@@ -26,7 +27,6 @@ end
 
 group :development, :test do
   gem "factory_girl_rails"
-  gem "faker"
   gem "rspec-rails"
   gem "mysql2"
   gem "byebug"

@@ -22,7 +22,12 @@
               <tr>
                 <%= render 'show_question_data', result: result %>
                 <td>
-                  <%= builder.select :right, Settings.results.to_a %>
+                  <% if builder.object.options.any? || builder.object.answer_content.present? %>
+                    <%= builder.select :right, Settings.results.to_a %>
+                  <% else %>
+                    <%= builder.hidden_field :right, value: 0 %>
+                    wrong
+                  <% end %>
                 </td>
               </tr>
             <% end %>

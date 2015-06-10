@@ -25,8 +25,10 @@
         </ul>
       <% elsif question.options.any? && question.is_single_choice? %>
         <p> Choose only one answer </p>
-        <ul class="answer-list">
-          <%= builder.collection_check_boxes(:option_ids, question.options, :id, :content) %>
+        <ul class="answer-list-one">
+          <%= builder.collection_check_boxes(:option_ids, question.options, :id, :content) do |b|
+              b.label(:"data-value" => b.value) {b.check_box(class: "check_box_button") + b.text} end 
+          %>        
         </ul>        
       <% else %>
         <%= builder.label 'your answer here' %>
@@ -37,3 +39,15 @@
     <%= f.submit "Submit", class: "btn btn-primary submit-exam" %>
   <% end %>
 </div>
+
+<script type = "text/javascript">
+  $(".check_box_button").click(function() {
+      if ($(this).is(":checked")) {
+          var group = "input:checkbox[name='" + $(this).attr("name") + "']";
+          $(group).prop("checked", false);
+          $(this).prop("checked", true);
+      } else {
+          $(this).prop("checked", false);
+      }
+  });
+</script>

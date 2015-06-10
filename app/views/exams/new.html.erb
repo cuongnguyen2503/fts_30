@@ -10,10 +10,7 @@
 
     <h3> Choose level </h3>
     <%= f.select :level, Settings.levels.map {|key, value| [key, value]} %>
-    
-    <h3> Exam's name </h3>
-    <%= f.text_field :name, class: 'form-control' %>
-  
+      
     <h3><%= f.submit t :start_exam, class: "btn btn-primary" %></h3>   
   <% end %>
 </div>

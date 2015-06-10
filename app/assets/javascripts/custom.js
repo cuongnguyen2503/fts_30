@@ -9,7 +9,8 @@ function add_fields(link, association, content) {
   $(".question-box").append(content.replace(regexp, new_id));
 }
 
-$(document).ready(function(){
+
+$(function(){
   var counter = 2400
   setInterval(function(){
     counter--;
