@@ -1,4 +1,7 @@
 class Admin::ExamsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_user
+
   def destroy
     @exam = Exam.find params[:id]
     @exam.destroy
@@ -30,4 +33,8 @@ class Admin::ExamsController < ApplicationController
   def exam_params
     params.require(:exam).permit :checked, results_attributes: [:right, :id]
   end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end  
 end

@@ -1,5 +1,7 @@
 class Admin::SubjectsController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :admin_user
+  
   def index
     @subjects = Subject.paginate page: params[:page], per_page: 10
   end
@@ -50,4 +52,7 @@ class Admin::SubjectsController < ApplicationController
     params.require(:subject).permit :name
   end 
 
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end 
 end

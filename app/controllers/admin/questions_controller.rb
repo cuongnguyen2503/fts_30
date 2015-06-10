@@ -1,4 +1,7 @@
 class Admin::QuestionsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_user
+
   def index
     @questions = Question.paginate page: params[:page], per_page: 10
   end
@@ -50,4 +53,7 @@ class Admin::QuestionsController < ApplicationController
       options_attributes: [:id, :question_id, :content, :correct, :_destroy]
   end     
 
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end 
 end
