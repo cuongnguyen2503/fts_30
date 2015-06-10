@@ -42,7 +42,7 @@ class ExamsController < ApplicationController
     end
   end
 
-  def show    
+  def show
     @exam = Exam.find params[:id]
   end
  

@@ -1,0 +1,21 @@
+<tr>
+  <td><%= result.question_content %></td>
+  <td>
+    <% if result.question.options.any? %>
+      <% result.right_answers.each do |answer| %>
+        <p>- <%= answer.content %></p>
+      <% end %>
+    <% else %>
+      <%= result.question_answer %>
+    <% end %>
+  </td>
+  <td>
+    <% result.options.each do |answer| %>
+      <p>- <%= answer.content %></p>
+    <% end %>
+    <%= result.answer_content if result.answer_content.present? %>
+  </td>
+  <td>
+    <%= result.right %>
+  </td>
+</tr>

@@ -1,38 +1,20 @@
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tr> 
-      <td> Question </td>
-      <td> Correct answer </td>
-      <td> your answer </td>
-      <td> Result </td>
-    </tr>
-    <% @exam.results.each do |result| %>
-      <tr>
-        <td><%= result.question_content %></td>
-        <td>
-          <% if result.question.options.any? %>
-            <% result.question.options.each do |option| %>
-              <%= option.content if option.correct? %>
-            <% end %>
-          <% else %>
-            <%= result.question_answer %>
-          <% end %>
-        </td>
-        <td>
-          <% if result.option_id? %>
-            <%= result.option_content %>
-          <% else %>
-            <%= result.answer_content %>
-          <% end %>
-        </td>
-        <td>
-          <% if result.option_id? %>
-            <%= result.option.correct? ? "True" : "Failed" %>
-          <% else %>
-            Not answered
-          <% end %>
-        </td>
+<% if @exam.checked? %>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr> 
+        <td> Question </td>
+        <td> Correct answer </td>
+        <td> Your answer </td>
+        <td> Result </td>
       </tr>
-    <% end %>
-  </table>
-</div>
+      <% @exam.results.each do |result| %>
+        <%= render 'result_content', result: result %>
+      <% end %>
+      <tr>
+      Score: <%= @exam.results.score %>
+      </tr>      
+    </table>
+  </div>
+<% else %>
+  <%= t :unchecked_exam_alert %>
+<% end %>

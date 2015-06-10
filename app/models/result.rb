@@ -11,6 +11,8 @@ class Result < ActiveRecord::Base
   delegate :answer, to: :question, prefix: true
   delegate :content, to: :option, prefix: true
 
+  scope :score, ->{where(right: Settings.results.right).count}
+
   def right_answers
     Question.right_answers_of question.id
   end
