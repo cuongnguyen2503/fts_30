@@ -5,6 +5,9 @@ class Question < ActiveRecord::Base
   belongs_to :exam  
   belongs_to :subject
 
+  validates :content, presence: true
+  validates :answer, presence: true
+
   enum types: [:single_choice, :multiple_choices, :text]
 
   accepts_nested_attributes_for :options, reject_if: ->(a){a[:content].blank?}, 

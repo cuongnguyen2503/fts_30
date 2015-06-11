@@ -1,13 +1,19 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <div class="question-box">
-  <h3><%= f.label 'Tên câu hỏi' %></h3>
-  <%= f.text_area :content, placeholder: 'Tên câu hỏi...', class: 'form-control' %>
-
-  <h3> Lựa chọn: </h3>
-  <%= f.fields_for :options do |builder| %>
-    <%= render 'option_fields', f: builder %>
-  <% end %>
+  <h3><%= f.label "Question' content" %></h3>
+  <%= f.text_area :content, placeholder: "Question's content...", class: 'form-control' %>
+  <h3><%= f.label "Question's type" %></h3>
+  <%= f.select :types, Settings.types.map{|t| [t, t, id: t]} %>
+  <div id="answer-field">
+  	<%= f.text_area :answer, class: "form-control", id: "answer-area" %>
+  </div>
+  <div id="option-fields">
+    <h3> Lựa chọn: </h3>
+    <%= f.fields_for :options do |builder| %>
+      <%= render 'option_fields', f: builder %>
+    <% end %>
+  </div>
 </div>
 
 <%= link_to_add_fields t(:add_option), f, :options %>

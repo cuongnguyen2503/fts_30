@@ -6,9 +6,8 @@ function remove_fields(link) {
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
-  $(".question-box").append(content.replace(regexp, new_id));
+  $("#option-fields").append(content.replace(regexp, new_id));
 }
-
 
 $(function(){
   var counter = 2400
@@ -27,4 +26,19 @@ $(function(){
       $(".submit-exam").click();
     }
   }, 1000);
+});
+
+$(document).ready(function(){
+  $("#text").click(function(){
+    $("#option-fields").hide();
+    $("#answer-field").show();
+  });
+  $("#single_choice").click(function(){
+    $("#option-fields").show();
+    $("#answer-field").hide();
+  });
+  $("#multiple_choices").click(function(){
+    $("#option-fields").show();
+    $("#answer-field").hide();
+  });
 });

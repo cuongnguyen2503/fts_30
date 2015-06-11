@@ -49,9 +49,9 @@ class Admin::QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit :content, 
-      options_attributes: [:id, :question_id, :content, :correct, :_destroy]
-  end     
+    params.require(:question).permit :content, :types, :answer,
+      options_attributes: [:id, :content, :correct, :_destroy]
+  end
 
   def admin_user
     redirect_to(root_url) unless current_user.admin?
